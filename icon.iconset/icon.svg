@@ -1,0 +1,61 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1f3c"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a3060"/>
+      <stop offset="100%" stop-color="#122040"/>
+    </linearGradient>
+    <linearGradient id="checkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo -->
+  <rect x="0" y="0" width="1024" height="1024" rx="200" ry="200" fill="url(#bgGrad)"/>
+  <ellipse cx="512" cy="120" rx="420" ry="120" fill="#1e3a6e" opacity="0.4"/>
+
+  <!-- Card -->
+  <rect x="160" y="200" width="700" height="620" rx="60" fill="url(#cardGrad)" stroke="#1e3560" stroke-width="3"/>
+  <rect x="160" y="200" width="700" height="5" rx="3" fill="#2563eb" opacity="0.7"/>
+
+  <!-- Circulo progresso -->
+  <circle cx="512" cy="140" r="80" fill="#0f1e38" stroke="#1e3560" stroke-width="4"/>
+  <circle cx="512" cy="140" r="64" fill="none" stroke="#1e3560" stroke-width="12"/>
+  <circle cx="512" cy="140" r="64" fill="none" stroke="url(#checkGrad)" stroke-width="12"
+          stroke-dasharray="281 402" stroke-dashoffset="100"
+          stroke-linecap="round" transform="rotate(-90 512 140)"/>
+  <text x="512" y="152" font-family="system-ui,sans-serif" font-size="38" font-weight="700"
+        fill="#d0e4ff" text-anchor="middle">75%</text>
+
+  <!-- Tarefa 1 concluida -->
+  <rect x="220" y="310" width="60" height="60" rx="14" fill="#2563eb"/>
+  <polyline points="234,340 248,354 286,316" fill="none" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="310" y="328" width="260" height="18" rx="9" fill="#3a5a8a" opacity="0.7"/>
+  <line x1="310" y1="338" x2="570" y2="338" stroke="#3a5a8a" stroke-width="3" opacity="0.5"/>
+
+  <!-- Tarefa 2 -->
+  <rect x="220" y="420" width="60" height="60" rx="14" fill="none" stroke="#1e3560" stroke-width="3"/>
+  <rect x="310" y="438" width="320" height="18" rx="9" fill="#d0e4ff" opacity="0.85"/>
+  <rect x="660" y="433" width="120" height="30" rx="15" fill="#3b0f0f"/>
+  <text x="720" y="452" font-family="system-ui,sans-serif" font-size="20" font-weight="600" fill="#ef4444" text-anchor="middle">Alta</text>
+
+  <!-- Tarefa 3 -->
+  <rect x="220" y="530" width="60" height="60" rx="14" fill="none" stroke="#1e3560" stroke-width="3"/>
+  <rect x="310" y="548" width="280" height="18" rx="9" fill="#d0e4ff" opacity="0.75"/>
+  <rect x="660" y="543" width="120" height="30" rx="15" fill="#3b2a0a"/>
+  <text x="720" y="562" font-family="system-ui,sans-serif" font-size="20" font-weight="600" fill="#f59e0b" text-anchor="middle">Média</text>
+
+  <!-- Tarefa 4 -->
+  <rect x="220" y="640" width="60" height="60" rx="14" fill="none" stroke="#1e3560" stroke-width="3"/>
+  <rect x="310" y="658" width="220" height="18" rx="9" fill="#d0e4ff" opacity="0.55"/>
+  <rect x="660" y="653" width="120" height="30" rx="15" fill="#0a2e14"/>
+  <text x="720" y="672" font-family="system-ui,sans-serif" font-size="20" font-weight="600" fill="#22c55e" text-anchor="middle">Baixa</text>
+
+  <!-- Barra progresso inferior -->
+  <rect x="220" y="760" width="560" height="12" rx="6" fill="#1e3560"/>
+  <rect x="220" y="760" width="400" height="12" rx="6" fill="#2563eb"/>
+</svg>

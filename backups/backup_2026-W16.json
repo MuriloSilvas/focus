@@ -1,0 +1,13 @@
+{
+  "generated": "2026-04-22T20:57:19.160186",
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Comprar mesa",
+      "date": "",
+      "priority": "Alta",
+      "category": "Geral",
+      "done": true
+    }
+  ]
+}
