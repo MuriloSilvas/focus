@@ -12,15 +12,20 @@ Desenvolvido por **Murilo Silva**
 - ✅ Marcar tarefas como concluídas
 - ✅ Prioridades: Alta, Média e Baixa
 - ✅ Categorias: Geral, Trabalho, Pessoal, Compras, Saúde e Estudos
-- ✅ Data de prazo com alertas de vencimento
-- ✅ Barra de progresso em tempo real
-- ✅ Busca e filtros avançados
+- ✅ Data de prazo com alertas visuais (borda vermelha = vencida, amarela = vence hoje)
+- ✅ Notificação automática ao abrir o app sobre tarefas vencidas
+- ✅ Barra de progresso em tempo real (% de tarefas concluídas)
+- ✅ Contadores de Pendentes, Concluídas e Vencidas no header
+- ✅ Busca em tempo real por nome
+- ✅ Filtros por status, prioridade, categoria e prazo
 - ✅ Ordenação por nome, data ou prioridade
 - ✅ Exportar para Excel (.xlsx) com formatação profissional
 - ✅ Exportar para PDF com tabela colorida
-- ✅ Backup automático semanal em JSON
+- ✅ Backup automático semanal em JSON (pasta `backups/`)
+- ✅ Backup manual em qualquer momento
 - ✅ Dados salvos localmente no banco SQLite
 - ✅ Interface dark com tema azul profundo
+- ✅ Ícone personalizado no Mac e Windows
 
 ---
 
@@ -30,7 +35,7 @@ Desenvolvido por **Murilo Silva**
 |---------|---------|
 | macOS   | ✅ |
 | Windows | ✅ |
-| Linux   | ✅ |
+| Linux   | ✅ (manual) |
 
 ---
 
@@ -41,37 +46,75 @@ Desenvolvido por **Murilo Silva**
 - [Python 3.10+](https://www.python.org/downloads/)
   - No Windows: marque **"Add Python to PATH"** durante a instalação
 
+### Baixar o projeto
+
+**Opção A — pelo terminal:**
+```bash
+git clone https://github.com/MuriloSilvas/focus.git
+cd focus
+```
+
+**Opção B — pelo GitHub:**
+1. Clique no botão verde **Code** → **Download ZIP**
+2. Extraia a pasta em qualquer lugar do seu computador
+
+---
+
 ### macOS
 
 ```bash
-# 1. Clone o repositório
-git clone https://github.com/seu-usuario/focus.git
-cd focus
-
-# 2. Execute o instalador
+# 1. Dentro da pasta do projeto, execute o instalador
 chmod +x install_mac.sh
 ./install_mac.sh
 
-# 3. Abra o app com dois cliques em Focus.command
+# 2. Abra o app com dois cliques em Focus.command
 ```
+
+> O instalador instala as dependências automaticamente e cria o `Focus.command` com ícone personalizado.
+
+---
 
 ### Windows
 
-```
-1. Clone ou baixe o repositório
-2. Dê dois cliques em install_windows.bat
-3. Abra o app pelo atalho criado na Área de Trabalho
-```
+1. Clique com botão direito em `install_windows.bat`
+2. Selecione **Executar como administrador**
+3. Aguarde a instalação das dependências
+4. Abra o app pelo atalho **Focus** criado na Área de Trabalho
 
-### Manual (Mac, Windows e Linux)
+> O instalador instala as dependências, cria o atalho com ícone na Área de Trabalho e configura o app para abrir sem janela de terminal.
+
+---
+
+### Linux (manual)
 
 ```bash
-# Instale as dependências
 pip install customtkinter openpyxl fpdf2 pillow
-
-# Execute o app
 python myapp.py
 ```
+
+---
+
+## 📁 Estrutura do projeto
+
+```
+focus/
+├── myapp.py                  # Código principal do app
+├── install_mac.sh            # Instalador para macOS
+├── install_windows.bat       # Instalador para Windows
+├── requirements.txt          # Dependências Python
+├── icon.ico                  # Ícone para Windows
+├── icon.icns                 # Ícone para macOS
+├── icon.iconset/             # Ícones em vários tamanhos
+│   ├── icon_16x16.png
+│   ├── icon_32x32.png
+│   ├── icon_128x128.png
+│   ├── icon_256x256.png
+│   └── icon_512x512.png
+├── LICENSE                   # Licença MIT
+└── README.md                 # Este arquivo
+```
+
+> O banco de dados `tasks.db` e a pasta `backups/` são criados automaticamente na primeira execução.
 
 ---
 
@@ -82,33 +125,26 @@ python myapp.py
 | [customtkinter](https://github.com/TomSchimansky/CustomTkinter) | Interface gráfica moderna |
 | [openpyxl](https://openpyxl.readthedocs.io/) | Exportação para Excel |
 | [fpdf2](https://pyfpdf.github.io/fpdf2/) | Exportação para PDF |
-| [pillow](https://python-pillow.org/) | Processamento de imagens |
+| [pillow](https://python-pillow.org/) | Processamento de imagens e ícones |
 
 ---
 
-## 📁 Estrutura do projeto
+## ❓ Problemas comuns
 
-```
-focus/
-├── myapp.py              # Código principal
-├── install_mac.sh        # Instalador para macOS
-├── install_windows.bat   # Instalador para Windows
-├── requirements.txt      # Dependências Python
-├── icon.iconset/         # Ícones do app
-│   ├── icon_16x16.png
-│   ├── icon_32x32.png
-│   ├── icon_128x128.png
-│   ├── icon_256x256.png
-│   └── icon_512x512.png
-├── icon.icns             # Ícone macOS
-└── README.md             # Este arquivo
+**No Mac — app não abre com dois cliques:**
+```bash
+xattr -cr Focus.command
+chmod +x Focus.command
 ```
 
----
+**No Windows — instalador não roda:**
+- Clique com botão direito → **Executar como administrador**
+- Certifique-se de que o Python está instalado com a opção **"Add Python to PATH"** marcada
 
-## 📸 Screenshots
-
-> Interface dark com tema azul profundo, barra de progresso, filtros por categoria e alertas de prazo.
+**Dependências não instaladas:**
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
