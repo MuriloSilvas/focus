@@ -48,17 +48,7 @@ echo Dependencias instaladas!
 echo.
 
 set DIR=%~dp0
-
-REM Converte icon PNG para ICO para usar no atalho Windows
-set ICON_PNG=%DIR%icon.iconset\icon_256x256.png
 set ICON_ICO=%DIR%icon.ico
-%PYTHON% -c "from PIL import Image; img = Image.open(r'%ICON_PNG%'); img.save(r'%ICON_ICO%', format='ICO', sizes=[(256,256),(128,128),(64,64),(32,32),(16,16)])" 2>nul
-if exist "%ICON_ICO%" (
-    echo Icone convertido para Windows!
-) else (
-    echo Icone nao convertido, usando padrao.
-    set ICON_ICO=%DIR%icon.iconset\icon_256x256.png
-)
 
 REM Cria Focus.bat usando pythonw (sem CMD)
 (
