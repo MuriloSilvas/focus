@@ -569,7 +569,7 @@ class TaskCard(ctk.CTkFrame):
 class TaskManagerApp(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Task Manager")
+        self.title("Focus")
         self.geometry("1020x720")
         self.minsize(860, 600)
         self.configure(fg_color=C["bg"])
@@ -602,7 +602,7 @@ class TaskManagerApp(ctk.CTk):
         ctk.CTkLabel(hdr, text="Tarefas", font=("Helvetica", 26)).grid(
             row=0, column=0, padx=(16,10), pady=10, rowspan=3)
 
-        ctk.CTkLabel(hdr, text="Task Manager",
+        ctk.CTkLabel(hdr, text="Focus",
                      font=("Helvetica", 20, "bold"),
                      text_color=C["text"]).grid(row=0, column=1, sticky="w", pady=(10,0))
         ctk.CTkLabel(hdr, text="Organize suas tarefas com eficiencia",
