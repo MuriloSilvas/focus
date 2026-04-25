@@ -49,6 +49,17 @@ echo.
 
 set DIR=%~dp0
 
+REM Converte icon PNG para ICO para usar no atalho Windows
+set ICON_PNG=%DIR%icon.iconset\icon_256x256.png
+set ICON_ICO=%DIR%icon.ico
+%PYTHON% -c "from PIL import Image; img = Image.open(r'%ICON_PNG%'); img.save(r'%ICON_ICO%', format='ICO', sizes=[(256,256),(128,128),(64,64),(32,32),(16,16)])" 2>nul
+if exist "%ICON_ICO%" (
+    echo Icone convertido para Windows!
+) else (
+    echo Icone nao convertido, usando padrao.
+    set ICON_ICO=%DIR%icon.iconset\icon_256x256.png
+)
+
 REM Cria Focus.bat usando pythonw (sem CMD)
 (
     echo @echo off
@@ -65,7 +76,7 @@ REM Cria Abrir_Focus.vbs usando pythonw (sem CMD)
 echo Launchers criados!
 echo.
 
-REM Cria atalho na area de trabalho via VBScript (mais confiavel que PowerShell)
+REM Cria atalho na area de trabalho com icone
 set SHORTCUT_VBS=%TEMP%\criar_atalho.vbs
 (
     echo Set oWS = WScript.CreateObject^("WScript.Shell"^)
@@ -73,6 +84,7 @@ set SHORTCUT_VBS=%TEMP%\criar_atalho.vbs
     echo Set oLink = oWS.CreateShortcut^(sLinkFile^)
     echo oLink.TargetPath = "%DIR%Abrir_Focus.vbs"
     echo oLink.WorkingDirectory = "%DIR%"
+    echo oLink.IconLocation = "%ICON_ICO%"
     echo oLink.Description = "Focus - Task Manager"
     echo oLink.Save
 ) > "%SHORTCUT_VBS%"
@@ -80,7 +92,7 @@ set SHORTCUT_VBS=%TEMP%\criar_atalho.vbs
 cscript //nologo "%SHORTCUT_VBS%"
 del "%SHORTCUT_VBS%"
 
-echo Atalho criado na Area de Trabalho!
+echo Atalho criado na Area de Trabalho com icone!
 echo.
 echo ====================================
 echo   Instalacao concluida!
