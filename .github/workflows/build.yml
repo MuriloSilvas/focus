@@ -1,0 +1,133 @@
+name: Build Focus
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-mac:
+    name: Build macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: |
+          pip install customtkinter openpyxl fpdf2 pillow pyinstaller
+
+      - name: Gerar ícone .icns
+        run: |
+          mkdir -p build_icon.iconset
+          cp icon.iconset/icon_16x16.png build_icon.iconset/icon_16x16.png
+          cp icon.iconset/icon_16x16@2x.png build_icon.iconset/icon_16x16@2x.png 2>/dev/null || cp icon.iconset/icon_32x32.png build_icon.iconset/icon_16x16@2x.png
+          cp icon.iconset/icon_32x32.png build_icon.iconset/icon_32x32.png
+          cp icon.iconset/icon_32x32@2x.png build_icon.iconset/icon_32x32@2x.png 2>/dev/null || cp icon.iconset/icon_64x64.png build_icon.iconset/icon_32x32@2x.png
+          cp icon.iconset/icon_128x128.png build_icon.iconset/icon_128x128.png
+          cp icon.iconset/icon_128x128@2x.png build_icon.iconset/icon_128x128@2x.png 2>/dev/null || cp icon.iconset/icon_256x256.png build_icon.iconset/icon_128x128@2x.png
+          cp icon.iconset/icon_256x256.png build_icon.iconset/icon_256x256.png
+          cp icon.iconset/icon_256x256@2x.png build_icon.iconset/icon_256x256@2x.png 2>/dev/null || cp icon.iconset/icon_512x512.png build_icon.iconset/icon_256x256@2x.png
+          cp icon.iconset/icon_512x512.png build_icon.iconset/icon_512x512.png
+          iconutil -c icns build_icon.iconset -o icon_build.icns
+
+      - name: Build com PyInstaller
+        run: |
+          pyinstaller \
+            --onedir \
+            --windowed \
+            --name "Focus" \
+            --icon=icon_build.icns \
+            --add-data "icon.iconset:icon.iconset" \
+            --add-data "icon.icns:." \
+            myapp.py
+
+      - name: Zipar app
+        run: |
+          cd dist
+          zip -r ../Focus-mac.zip Focus.app
+
+      - name: Upload artefato Mac
+        uses: actions/upload-artifact@v4
+        with:
+          name: Focus-mac
+          path: Focus-mac.zip
+
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: |
+          pip install customtkinter openpyxl fpdf2 pillow pyinstaller
+
+      - name: Build com PyInstaller
+        run: |
+          pyinstaller `
+            --onefile `
+            --windowed `
+            --name "Focus" `
+            --icon=icon.ico `
+            --add-data "icon.iconset;icon.iconset" `
+            myapp.py
+
+      - name: Zipar exe
+        run: |
+          cd dist
+          Compress-Archive -Path Focus.exe -DestinationPath ..\Focus-windows.zip
+
+      - name: Upload artefato Windows
+        uses: actions/upload-artifact@v4
+        with:
+          name: Focus-windows
+          path: Focus-windows.zip
+
+  release:
+    name: Criar Release
+    needs: [build-mac, build-windows]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar artefato Mac
+        uses: actions/download-artifact@v4
+        with:
+          name: Focus-mac
+
+      - name: Baixar artefato Windows
+        uses: actions/download-artifact@v4
+        with:
+          name: Focus-windows
+
+      - name: Criar Release no GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Focus ${{ github.ref_name }}
+          body: |
+            ## 📋 Focus ${{ github.ref_name }}
+
+            ### Download
+            - 🍎 **Mac** — baixe `Focus-mac.zip`, extraia e abra o `Focus.app`
+            - 🪟 **Windows** — baixe `Focus-windows.zip`, extraia e abra o `Focus.exe`
+
+            ### Não precisa instalar Python!
+            Os executáveis já vêm com tudo embutido.
+          files: |
+            Focus-mac.zip
+            Focus-windows.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
