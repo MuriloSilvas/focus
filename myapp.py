@@ -13,32 +13,32 @@ from openpyxl.utils import get_column_letter
 from fpdf import FPDF
 
 # ── Tema ──────────────────────────────────────────────────────────────────────
-ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
 # ── Paleta ────────────────────────────────────────────────────────────────────
 C = {
-    "bg":        "#0a1628",
-    "panel":     "#0f1e38",
-    "card":      "#122040",
-    "border":    "#1e3560",
+    "bg":        "#f8fafc",
+    "panel":     "#ffffff",
+    "card":      "#f1f5f9",
+    "border":    "#e2e8f0",
     "accent":    "#2563eb",
     "accent2":   "#7c3aed",
-    "text":      "#d0e4ff",
-    "muted":     "#5a7db0",
+    "text":      "#1e293b",
+    "muted":     "#64748b",
     "alta":      "#ef4444",
     "media":     "#f59e0b",
     "baixa":     "#22c55e",
-    "done_fg":   "#3a5a8a",
-    "hover":     "#1a2f55",
+    "done_fg":   "#94a3b8",
+    "hover":     "#e2e8f0",
     "vencida":   "#ef4444",
     "hoje":      "#f59e0b",
 }
 
 PRIORITY_COLORS  = {"Alta": C["alta"],  "Media": C["media"], "Baixa": C["baixa"],
                     "Média": C["media"]}
-PRIORITY_BG      = {"Alta": "#3b0f0f",  "Media": "#3b2a0a",  "Baixa": "#0a2e14",
-                    "Média": "#3b2a0a"}
+PRIORITY_BG      = {"Alta": "#fee2e2",  "Media": "#fef3c7",  "Baixa": "#dcfce7",
+                    "Média": "#fef3c7"}
 CATEGORY_COLORS  = {
     "Geral":    "#5a7db0",
     "Trabalho": "#2563eb",
@@ -164,7 +164,7 @@ def export_excel(tasks, path):
     ws.title = "Tarefas"
 
     ws.merge_cells("A1:G1")
-    ws["A1"] = "TASK MANAGER - Relatorio de Tarefas"
+    ws["A1"] = "Focus - Relatorio de Tarefas"
     ws["A1"].font = Font(bold=True, size=14, color="FFFFFF", name="Calibri")
     ws["A1"].fill = PatternFill("solid", fgColor="0D1F3C")
     ws["A1"].alignment = Alignment(horizontal="center", vertical="center")
@@ -258,7 +258,7 @@ class PDF(FPDF):
         self.set_font("Helvetica", "B", 16)
         self.set_text_color(208, 228, 255)
         self.set_y(8)
-        self.cell(0, 10, "Task Manager", align="C", new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 10, "Focus", align="C", new_x="LMARGIN", new_y="NEXT")
         self.set_font("Helvetica", "", 9)
         self.set_text_color(90, 125, 176)
         self.cell(0, 6,
