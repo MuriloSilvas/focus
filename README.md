@@ -43,8 +43,10 @@ Desenvolvido por **Murilo Silva**
 
 ### Pré-requisitos
 
-- [Python 3.10+](https://www.python.org/downloads/)
-  - No Windows: marque **"Add Python to PATH"** durante a instalação
+- ### Pré-requisitos
+> Nenhum! Os instaladores para Windows e macOS já instalam tudo automaticamente (incluindo Python e dependências).
+
+> Linux: requer Python 3.10+ instalado manualmente.
 
 ### Baixar o projeto
 
