@@ -97,3 +97,62 @@ python myapp.py
 ---
 
 ## 📁 Estrutura do projeto
+focus/
+├── myapp.py                  # Código principal do app
+├── install_mac.sh            # Instalador para macOS
+├── install_windows.bat       # Instalador para Windows
+├── requirements.txt          # Dependências Python
+├── icon.ico                  # Ícone para Windows
+├── icon.icns                 # Ícone para macOS
+├── icon.iconset/             # Ícones em vários tamanhos
+│   ├── icon_16x16.png
+│   ├── icon_32x32.png
+│   ├── icon_128x128.png
+│   ├── icon_256x256.png
+│   └── icon_512x512.png
+├── LICENSE                   # Licença MIT
+└── README.md                 # Este arquivo
+
+> O banco de dados `tasks.db` e a pasta `backups/` são criados automaticamente na primeira execução.
+
+---
+
+## 📦 Dependências
+
+| Biblioteca | Uso |
+| --- | --- |
+| [customtkinter](https://github.com/TomSchimansky/CustomTkinter) | Interface gráfica moderna |
+| [openpyxl](https://openpyxl.readthedocs.io/) | Exportação para Excel |
+| [fpdf2](https://pyfpdf.github.io/fpdf2/) | Exportação para PDF |
+| [pillow](https://python-pillow.org/) | Processamento de imagens e ícones |
+
+---
+
+## ❓ Problemas comuns
+
+**No Mac — app não abre com dois cliques:**
+
+```bash
+xattr -cr Focus.command
+chmod +x Focus.command
+```
+
+**No Windows — instalador não roda:**
+
+- Clique com botão direito → **Executar como administrador**
+
+**Dependências não instaladas (Linux):**
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/MuriloSilvas/focus/blob/main/LICENSE) para mais detalhes.
+
+---
+
+Feito com dedicação por **Murilo Silva**
