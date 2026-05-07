@@ -24,7 +24,7 @@ Desenvolvido por **Murilo Silva**
 - ✅ Backup automático semanal em JSON (pasta `backups/`)
 - ✅ Backup manual em qualquer momento
 - ✅ Dados salvos localmente no banco SQLite
-- ✅ Interface dark com tema azul profundo
+- ✅ Interface clara com tema moderno
 - ✅ Ícone personalizado no Mac e Windows
 
 ---
@@ -32,10 +32,10 @@ Desenvolvido por **Murilo Silva**
 ## 🖥️ Compatibilidade
 
 | Sistema | Suporte |
-|---------|---------|
-| macOS   | ✅ |
+| --- | --- |
+| macOS | ✅ |
 | Windows | ✅ |
-| Linux   | ✅ (manual) |
+| Linux | ✅ (manual) |
 
 ---
 
@@ -43,20 +43,20 @@ Desenvolvido por **Murilo Silva**
 
 ### Pré-requisitos
 
-- ### Pré-requisitos
 > Nenhum! Os instaladores para Windows e macOS já instalam tudo automaticamente (incluindo Python e dependências).
-
 > Linux: requer Python 3.10+ instalado manualmente.
 
 ### Baixar o projeto
 
 **Opção A — pelo terminal:**
+
 ```bash
 git clone https://github.com/MuriloSilvas/focus.git
 cd focus
 ```
 
 **Opção B — pelo GitHub:**
+
 1. Clique no botão verde **Code** → **Download ZIP**
 2. Extraia a pasta em qualquer lugar do seu computador
 
@@ -97,63 +97,3 @@ python myapp.py
 ---
 
 ## 📁 Estrutura do projeto
-
-```
-focus/
-├── myapp.py                  # Código principal do app
-├── install_mac.sh            # Instalador para macOS
-├── install_windows.bat       # Instalador para Windows
-├── requirements.txt          # Dependências Python
-├── icon.ico                  # Ícone para Windows
-├── icon.icns                 # Ícone para macOS
-├── icon.iconset/             # Ícones em vários tamanhos
-│   ├── icon_16x16.png
-│   ├── icon_32x32.png
-│   ├── icon_128x128.png
-│   ├── icon_256x256.png
-│   └── icon_512x512.png
-├── LICENSE                   # Licença MIT
-└── README.md                 # Este arquivo
-```
-
-> O banco de dados `tasks.db` e a pasta `backups/` são criados automaticamente na primeira execução.
-
----
-
-## 📦 Dependências
-
-| Biblioteca | Uso |
-|------------|-----|
-| [customtkinter](https://github.com/TomSchimansky/CustomTkinter) | Interface gráfica moderna |
-| [openpyxl](https://openpyxl.readthedocs.io/) | Exportação para Excel |
-| [fpdf2](https://pyfpdf.github.io/fpdf2/) | Exportação para PDF |
-| [pillow](https://python-pillow.org/) | Processamento de imagens e ícones |
-
----
-
-## ❓ Problemas comuns
-
-**No Mac — app não abre com dois cliques:**
-```bash
-xattr -cr Focus.command
-chmod +x Focus.command
-```
-
-**No Windows — instalador não roda:**
-- Clique com botão direito → **Executar como administrador**
-- Certifique-se de que o Python está instalado com a opção **"Add Python to PATH"** marcada
-
-**Dependências não instaladas:**
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-<p align="center">Feito com dedicação por <strong>Murilo Silva</strong></p>
